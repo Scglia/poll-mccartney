@@ -13,7 +13,6 @@ body {
   line-height: 1.5em;
   margin:0;
   color: rgb(80, 80, 80);
-  padding:0 1em;
   max-width: 800px;
   margin: 0 auto 5.5em;
 
@@ -32,7 +31,6 @@ body {
   display: flex;
   justify-content: space-between;
   max-width: 800px;
-  padding: 0 1em;
   margin:auto;
 }
 
