@@ -1,10 +1,10 @@
 import React from 'react'
-import PollListContainer from '../containers/PollListContainer'
+import PollList from '../containers/PollList'
 import AddItem from '../containers/AddItem'
 
 const App = () => (
   <div>
-    <PollListContainer />
+    <PollList />
     <AddItem />
   </div>
 )
