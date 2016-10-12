@@ -1,12 +1,24 @@
 import React, { PropTypes } from 'react'
 
 const PollItem = ({ text, onUpvote, onDownvote, upvotes, downvotes, isFirst }) => (
-  <li className="pollItem">
-    <div>{isFirst ? '⭐️ ' : ''} {text}</div>
+  <li className={isFirst ? 'winning pollItem' : 'pollItem'}>
+    <div>{text}</div>
     <div className="pollItemVoteContainer">
-      <span className="pollItemVote green" onClick={onUpvote} ></span>
+      <div className="pollItemVote green" onClick={onUpvote} >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+          <g>
+            <path className="svgVote green" d="M30 20 L16 8 2 20" />
+          </g>
+        </svg>
+      </div>
       <span className="pollItemScore">{upvotes+downvotes}</span>
-      <span className="pollItemVote red" onClick={onDownvote} ></span>
+      <div className="pollItemVote red" onClick={onDownvote} >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+          <g>
+            <path className="svgVote red" d="M30 12 L16 24 2 12" />
+          </g>
+        </svg>
+      </div>
     </div>
   </li>
 )

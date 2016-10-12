@@ -13,35 +13,48 @@ body {
   line-height: 1.5em;
   margin:0;
   color: rgb(80, 80, 80);
+  padding:0 1em;
+  max-width: 800px;
+  margin: 0 auto 5.5em;
 
   -webkit-font-smoothing: antialised;
   -moz-osx-font-smoothing: grayscale
 }
 
+.addFormContainer {
+  position: fixed;
+  bottom: 1em;
+  left: 0;
+  width: 100%;
+}
+
 .addForm {
   display: flex;
   justify-content: space-between;
+  max-width: 800px;
+  padding: 0 1em;
+  margin:auto;
 }
 
 .addInput {
-  border: solid 1px rgb(180, 180, 180);
+  border: solid 3px rgb(180, 180, 180);
   border-radius: 4px;
-  flex-grow: 3;
+  flex-grow: 1;
   font-size:inherit;
-  margin: .5em;
+  margin: 0 .5em;
   padding: 1em .5em;
 }
 
 .addButton {
-  background-color: transparent;
-  border: solid 1px rgb(1,176,240);
+  background-color: white;
+  border: solid 3px rgb(1,176,240);
   border-radius: 4px;
   color: rgb(1,176,240);
   cursor: pointer;
-  flex-grow: 1;
   font-size: inherit;
-  margin: .5em;
+  margin: 0 .5em;
   padding: 1em .5em;
+  width: 10em;
 
   transition: background-color .3s, color .3s;
 }
@@ -59,10 +72,17 @@ body {
 
 .pollItem {
   border-bottom: solid 1px rgb(240,240,240);
-  padding: 1em 0;
+  padding: 1em 1em;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: background-color .2s, color .2s;
+  border-radius: 4px;
+}
+
+.winning {
+  background-color: rgb(80, 80, 80);
+  color: white;
 }
 
 .pollItemVoteContainer {
@@ -72,25 +92,36 @@ body {
 }
 
 .pollItemScore {
-  width: 3em;
+  font-size:36px;
   text-align: center;
+  width: 3rem;
 }
 
 .pollItemVote {
+  align-items: center;
   border:solid 3px;
   border-radius: 50%;
   cursor: pointer;
-  display: inline-block;
-  height: 2em;
-  width: 2em;
+  display: flex;
+  height: 3em;
+  justify-content: center;
+  width: 3em;
+}
+
+.svgVote {
+  stroke-linecap: round;
+  stroke-width:4px;
+  fill:none;
 }
 
 .green {
-  color: rgb(174, 238, 0);
   border-color: rgb(174, 238, 0);
+  color: rgb(174, 238, 0);
+  stroke: rgb(174, 238, 0);
 }
 
 .red {
-  color: rgb(255, 53, 139);
   border-color: rgb(255, 53, 139);
+  color: rgb(255, 53, 139);
+  stroke: rgb(255, 53, 139);
 }

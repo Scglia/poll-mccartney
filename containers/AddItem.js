@@ -6,7 +6,7 @@ let AddItem = ({ dispatch }) => {
   let input
 
   return (
-    <div>
+    <div className="addFormContainer">
       <form className="addForm" onSubmit={e => {
         e.preventDefault()
         if (!input.value.trim()) {
