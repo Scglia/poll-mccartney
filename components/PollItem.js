@@ -5,17 +5,17 @@ const PollItem = ({ text, onUpvote, onDownvote, upvotes, downvotes, isFirst }) =
     <div>{text}</div>
     <div className="pollItemVoteContainer">
       <div className="pollItemVote green" onClick={onUpvote} >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+        <svg className="svgVote green" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
           <g>
-            <path className="svgVote green" d="M30 20 L16 8 2 20" />
+            <path d="M30 20 L16 8 2 20" />
           </g>
         </svg>
       </div>
       <span className="pollItemScore">{upvotes+downvotes}</span>
       <div className="pollItemVote red" onClick={onDownvote} >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+        <svg className="svgVote red" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
           <g>
-            <path className="svgVote red" d="M30 12 L16 24 2 12" />
+            <path d="M30 12 L16 24 2 12" />
           </g>
         </svg>
       </div>
