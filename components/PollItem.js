@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes } from 'react';
 
 const PollItem = ({ text, onUpvote, onDownvote, upvotes, downvotes, isFirst }) => (
   <li className={isFirst ? 'winning pollItem' : 'pollItem'}>
@@ -11,7 +11,7 @@ const PollItem = ({ text, onUpvote, onDownvote, upvotes, downvotes, isFirst }) =
           </g>
         </svg>
       </div>
-      <span className="pollItemScore">{upvotes+downvotes}</span>
+      <span className="pollItemScore">{upvotes - downvotes}</span>
       <div className="pollItemVote red" onClick={onDownvote} >
         <svg className="svgVote red" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
           <g>
@@ -21,7 +21,7 @@ const PollItem = ({ text, onUpvote, onDownvote, upvotes, downvotes, isFirst }) =
       </div>
     </div>
   </li>
-)
+);
 
 PollItem.propTypes = {
   onUpvote: PropTypes.func.isRequired,
@@ -29,7 +29,7 @@ PollItem.propTypes = {
   upvotes: PropTypes.number.isRequired,
   downvotes: PropTypes.number.isRequired,
   text: PropTypes.string.isRequired,
-  isFirst: PropTypes.bool.isRequired
-}
+  isFirst: PropTypes.bool.isRequired,
+};
 
-export default PollItem
+export default PollItem;
