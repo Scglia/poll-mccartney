@@ -2,16 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { upvoteItem, downvoteItem } from '../actions';
 import PollItem from '../components/PollItem';
-import { getFirstChoices } from '../reducers';
-
-/**
- * returns the highest scoring items
- * @param {Array} items
- * @return {Array} item.id
- */
+import { getFirstChoices, getAllItems } from '../reducers';
 
 const mapStateToProps = state => ({
-  items: state.items,
+  items: getAllItems(state),
   firstChoices: getFirstChoices(state),
 });
 

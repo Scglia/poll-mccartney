@@ -8,3 +8,4 @@ const pollApp = combineReducers({
 export default pollApp;
 
 export const getFirstChoices = state => fromItems.getFirstChoices(state.items);
+export const getAllItems = state => fromItems.getAllItems(state.items);

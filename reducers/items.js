@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+
 const item = (state, action) => {
   switch (action.type) {
     case 'ADD_ITEM':
@@ -8,50 +10,65 @@ const item = (state, action) => {
         downvotes: 0,
       };
     case 'UPVOTE_ITEM':
-      if (state.id !== action.id) {
-        return state;
-      }
-
-      return Object.assign({}, state, {
-        upvotes: ++state.upvotes,
-      });
+      return {
+        ...state,
+        upvotes: state.upvotes + 1,
+      };
     case 'DOWNVOTE_ITEM':
-      if (state.id !== action.id) {
-        return state;
-      }
-      return Object.assign({}, state, {
-        downvotes: ++state.downvotes,
-      });
+      return {
+        ...state,
+        downvotes: state.downvotes + 1,
+      };
     default:
       return state;
   }
 };
 
-const items = (state = [], action) => {
+const byId = (state = {}, action) => {
+  switch (action.type) {
+    case 'UPVOTE_ITEM':
+    case 'DOWNVOTE_ITEM':
+    case 'ADD_ITEM':
+      return {
+        ...state,
+        [action.id]: item(state[action.id], action),
+      };
+    default:
+      return state;
+  }
+};
+
+const allIds = (state = [], action) => {
   switch (action.type) {
     case 'ADD_ITEM':
-      return [
-        ...state,
-        item(undefined, action),
-      ];
-    case 'UPVOTE_ITEM':
-      return state.map(t =>
-        item(t, action),
-      );
-    case 'DOWNVOTE_ITEM':
-      return state.map(t =>
-        item(t, action),
-      );
+      return [...state, action.id];
     default:
       return state;
   }
 };
+
+const items = combineReducers({
+  byId,
+  allIds,
+});
 
 export default items;
 
-export const getFirstChoices = (items) => {
+const getAllItems = (items) => {
+  return items.allIds.map(id => items.byId[id]);
+};
+
+export { getAllItems };
+
+/**
+ * returns the highest scoring items
+ * @param {Array} items
+ * @return {Array} item.id
+ */
+export const getFirstChoices = (state) => {
+  const items = getAllItems(state);
   let firstChoices = [];
-  let bestScore = (items[0]) ? items[0].upvotes + items[0].downvotes : 0;
+  let bestScore = (items[0]) ? items[0].upvotes - items[0].downvotes : 0;
 
   items.forEach((item) => {
     const itemScore = item.upvotes - item.downvotes;
