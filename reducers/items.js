@@ -1,30 +1,7 @@
 import { combineReducers } from 'redux';
+import item from './item';
 
-const item = (state, action) => {
-  switch (action.type) {
-    case 'ADD_ITEM':
-      return {
-        id: action.id,
-        text: action.text,
-        upvotes: 0,
-        downvotes: 0,
-      };
-    case 'UPVOTE_ITEM':
-      return {
-        ...state,
-        upvotes: state.upvotes + 1,
-      };
-    case 'DOWNVOTE_ITEM':
-      return {
-        ...state,
-        downvotes: state.downvotes + 1,
-      };
-    default:
-      return state;
-  }
-};
-
-const byId = (state = {}, action) => {
+const itemsById = (state = {}, action) => {
   switch (action.type) {
     case 'UPVOTE_ITEM':
     case 'DOWNVOTE_ITEM':
@@ -38,7 +15,7 @@ const byId = (state = {}, action) => {
   }
 };
 
-const allIds = (state = [], action) => {
+const itemsAllIds = (state = [], action) => {
   switch (action.type) {
     case 'ADD_ITEM':
       return [...state, action.id];
@@ -48,15 +25,14 @@ const allIds = (state = [], action) => {
 };
 
 const items = combineReducers({
-  byId,
-  allIds,
+  itemsById,
+  itemsAllIds,
 });
 
 export default items;
 
-const getAllItems = (items) => {
-  return items.allIds.map(id => items.byId[id]);
-};
+const getAllItems = state =>
+  state.itemsAllIds.map(id => state.itemsById[id]);
 
 export { getAllItems };
 
